@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>scrparser</title>
+    <style>
+        #button {
+            position: relative;
+
+            color: #660000;
+            height: 55px;
+            width: 75px;
+
+        }
+
+        input {
+            position: relative;
+
+            color: #660000;
+            width: 300px;
+            height: 50px;
+
+        }
+
+        p {
+            position: relative;
+
+            margin-top: 100px;
+            color: #660000;
+            font-size: 30px;
+
+        }
+
+        h1 {
+            position: relative;
+
+            color: #660000;
+            font-size: 50px;
+        }
+
+        div {
+            margin-left: 40%;
+        }
+
+        a {
+            text-decoration: none; /* Убирает подчеркивание для ссылок */
+        }
+
+
+    </style>
+</head>
+<body>
+    <div>
+            <h1>screen parser</h1>
+            <p>Количество вкладок</p>
+            <label for="input">
+                <input id="input" type="number" name="quantity" placeholder="Количество">
+            </label>
+            <button id="button">Start</button>
+        <footer>
+            <p>
+                <a href="https://github.com/7eliassen"> by 7eliassen 😾</a> <br>
+                ivan-smirnov-6909@mail.ru
+            </p>
+        </footer>
+    </div>
+    <script>
+        let button = document.querySelector('#button')
+        const url = 'https://prnt.sc/'
+
+        letters = 'qwertyuiopasdfghjklzxcvbnm1234567890'
+        letters = letters.split('')
+
+
+
+        function shuffle(array) {
+            var currentIndex = array.length, temporaryValue, randomIndex;
+
+            while (0 !== currentIndex) {
+
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+
+            return array;
+        }
+
+
+        function makeID() {
+            shuffle(letters)
+            let firsFiveLetters = letters.slice(0, 6)
+            firsFiveLetters = firsFiveLetters.join('')
+            return  url + firsFiveLetters
+        }
+
+
+
+        button.addEventListener("click", function () {
+            let quantify = document.querySelector('#input').value
+            if (quantify > 0 & quantify < 10) {
+                for (let i=0;i<quantify;i++) {
+                    window.open(makeID())
+                }}else {
+                alert('Неправильное значение, выберите от 1 до 10')
+            }
+        })
+
+    </script>
+</body>
+</html>
